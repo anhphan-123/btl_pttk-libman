@@ -7,3 +7,11 @@ target/
 .env
 db.properties
 *.log
+
+# Tai lieu phan tich/thiet ke chi luu tren may
+*.doc
+*.docx
+*.pdf
+
+# Script chay cuc bo
+*.sh
