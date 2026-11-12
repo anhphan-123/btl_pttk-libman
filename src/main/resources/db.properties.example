@@ -1,7 +1,0 @@
-# File tham khảo tên biến; ứng dụng hiện chỉ đọc biến môi trường LIBMAN_DB_*.
-# Không sao chép file này thành db.properties vì DatabaseConfig8 không đọc file đó.
-db.host=127.0.0.1
-db.port=3306
-db.name=libman
-db.user=libman_app
-db.password=thay_bang_mat_khau_that

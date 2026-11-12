@@ -15,3 +15,9 @@ db.properties
 
 # Script chay cuc bo
 *.sh
+
+# Chi giu source chinh tren GitHub
+src/test/
+*.example
+docs/
+tmp/
