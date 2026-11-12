@@ -7,7 +7,6 @@ public class Invoice8 {
     private Long invoiceId;
     private Long importId;
     private LocalDate invoiceDate;
-    // Được truy vấn từ SUM(quantity * price), không ánh xạ vào cột CSDL.
     private BigDecimal totalAmount;
 
     public Long getInvoiceId() { return invoiceId; }

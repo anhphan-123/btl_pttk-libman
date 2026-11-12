@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/** Cấu hình JDBC chỉ đọc thông tin kết nối từ biến môi trường. */
 public final class DatabaseConfig8 {
     private static final String HOST = valueOrDefault("LIBMAN_DB_HOST", "127.0.0.1");
     private static final String PORT = valueOrDefault("LIBMAN_DB_PORT", "3306");

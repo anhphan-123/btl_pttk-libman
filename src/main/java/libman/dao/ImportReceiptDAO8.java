@@ -19,10 +19,6 @@ public class ImportReceiptDAO8 extends DAO8 {
     private final DocumentCopyDAO8 documentCopyDAO8 = new DocumentCopyDAO8();
     private final InvoiceDAO8 invoiceDAO8 = new InvoiceDAO8();
 
-    /**
-     * Lưu phiếu, các dòng chi tiết, toàn bộ bản sao và hóa đơn trong một transaction JDBC.
-     * submissionToken có unique key để lần Submit lặp lại không sinh thêm phiếu.
-     */
     public ImportReceipt8 saveReceiptWithDetailsAndInvoice(ImportReceipt8 receipt) throws SQLException {
         validateReceipt(receipt);
         try (Connection connection = open()) {

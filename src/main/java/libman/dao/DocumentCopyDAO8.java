@@ -41,7 +41,6 @@ public class DocumentCopyDAO8 extends DAO8 {
         }
     }
 
-    /** Tạo toàn bộ bản sao của một dòng nhập bằng chính Connection của transaction. */
     public void createCopies(Connection connection, String documentId, int quantity, long importDetailId)
             throws SQLException {
         if (documentId == null || !documentId.matches("[A-Za-z0-9][A-Za-z0-9_-]{0,29}")

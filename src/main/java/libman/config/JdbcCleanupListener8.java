@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
-/** Dọn tài nguyên JDBC khi undeploy để Tomcat không giữ classloader của ứng dụng. */
 @WebListener
 public class JdbcCleanupListener8 implements ServletContextListener {
     @Override

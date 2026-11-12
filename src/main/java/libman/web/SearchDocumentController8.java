@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-/** Controller MVC cho Search Document 8; chỉ đọc tài liệu và các bản sao. */
 @WebServlet(urlPatterns = {"/search-document-8", "/documents"})
 public class SearchDocumentController8 extends HttpServlet {
     private static final String SEARCH_VIEW = "/WEB-INF/jsp/SearchDocumentUI8.jsp";
@@ -27,17 +26,14 @@ public class SearchDocumentController8 extends HttpServlet {
     private final DocumentDAO8 documentDAO8 = new DocumentDAO8();
     private final DocumentCopyDAO8 documentCopyDAO8 = new DocumentCopyDAO8();
 
-    /** Tương ứng SearchDocumentController8.searchByTitle(keyword) trong sequence v3.0. */
     public List<Document8> searchByTitle(String keyword) throws SQLException {
         return documentDAO8.searchByTitle(keyword);
     }
 
-    /** Tương ứng SearchDocumentController8.getDetail(id) trong sequence v3.0. */
     public Optional<Document8> getDetail(String documentId) throws SQLException {
         return documentDAO8.findById(documentId);
     }
 
-    /** Tương ứng SearchDocumentController8.getCopies(id) trong sequence v3.0. */
     public List<DocumentCopy8> getCopies(String documentId) throws SQLException {
         return documentCopyDAO8.findByDocumentId(documentId);
     }
@@ -63,7 +59,6 @@ public class SearchDocumentController8 extends HttpServlet {
             throws ServletException, IOException {
         prepareSearchView(request, keyword);
 
-        // Không có tham số keyword là lần mở trang đầu tiên; keyword= mới là lỗi nhập rỗng.
         if (rawKeyword == null) {
             forward(request, response, SEARCH_VIEW);
             return;
@@ -140,7 +135,6 @@ public class SearchDocumentController8 extends HttpServlet {
         request.setAttribute("keyword", keyword == null ? "" : keyword);
     }
 
-    /** Khôi phục danh sách cũ theo scenario v3.0 khi tài liệu bị xóa trước lúc mở chi tiết. */
     private void restoreSearchResults(HttpServletRequest request, String keyword) throws SQLException {
         prepareSearchView(request, keyword);
         if (keyword != null && !keyword.isBlank() && keyword.length() <= 255) {

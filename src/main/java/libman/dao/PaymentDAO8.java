@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDAO8 extends DAO8 {
-    /**
-     * Ghi nhận thanh toán tiền mặt/chuyển khoản. Invoice được khóa trước khi kiểm tra để
-     * ngăn hai request đồng thời cùng đánh dấu SUCCESS.
-     */
     public Payment8 recordManualPayment(Payment8 payment) throws SQLException {
         validatePayment(payment);
         try (Connection connection = open()) {
@@ -61,7 +57,6 @@ public class PaymentDAO8 extends DAO8 {
         }
     }
 
-    /** Trả về lịch sử thanh toán, mới nhất trước, để hiển thị và cho phép thử lại. */
     public List<Payment8> findByInvoiceId(long invoiceId) throws SQLException {
         String sql = "SELECT paymentId, invoiceId, paymentDate, amount, paymentMethod, paymentStatus "
                 + "FROM tblPayment8 WHERE invoiceId = ? ORDER BY paymentId DESC";

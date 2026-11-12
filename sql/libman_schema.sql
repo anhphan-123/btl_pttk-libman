@@ -1,6 +1,3 @@
--- LIBMAN - MySQL 8 schema
--- Chạy bằng một tài khoản MySQL có quyền CREATE DATABASE và CREATE TABLE.
-
 SET NAMES utf8mb4;
 
 CREATE DATABASE IF NOT EXISTS libman

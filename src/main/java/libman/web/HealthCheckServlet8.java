@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/** Endpoint kỹ thuật của Giai đoạn 2, không phải giao diện nghiệp vụ. */
 @WebServlet("/health")
 public class HealthCheckServlet8 extends HttpServlet {
     @Override

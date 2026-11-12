@@ -34,7 +34,6 @@ public class ImportReceipt8 {
         this.details = details == null ? new ArrayList<>() : new ArrayList<>(details);
     }
 
-    /** Tổng tiền là dữ liệu dẫn xuất, không được lưu trong tblImportReceipt8. */
     public BigDecimal getTotalAmount() {
         return details.stream()
                 .map(ImportDetail8::getLineTotal)

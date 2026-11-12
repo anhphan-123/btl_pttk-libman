@@ -38,7 +38,6 @@ public class InvoiceDAO8 extends DAO8 {
         }
     }
 
-    /** Tìm hóa đơn theo mã để phục vụ trang hóa đơn và trang thanh toán. */
     public Optional<Invoice8> findById(long invoiceId) throws SQLException {
         String sql = "SELECT i.invoiceId, i.importId, i.invoiceDate, "
                 + "COALESCE(SUM(d.quantity * d.price), 0) AS totalAmount "

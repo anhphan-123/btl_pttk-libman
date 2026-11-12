@@ -38,10 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Controller MVC cho toàn bộ luồng Import Document 8.
- * Draft chỉ nằm trong session; dữ liệu thật chỉ được ghi khi Submit.
- */
 @WebServlet("/import-document-8")
 public class ImportDocumentController8 extends HttpServlet {
     private static final String SUPPLIER_VIEW = "/WEB-INF/jsp/FindSupplierUI8.jsp";
@@ -66,7 +62,6 @@ public class ImportDocumentController8 extends HttpServlet {
     private final InvoiceDAO8 invoiceDAO8 = new InvoiceDAO8();
     private final PaymentDAO8 paymentDAO8 = new PaymentDAO8();
 
-    /** Tương ứng ImportDocumentController8.searchSupplier(name). */
     public List<Supplier8> searchSupplier(String name) throws SQLException {
         if (!ValidationUtil8.hasText(name) || name.trim().length() > 200) {
             throw new IllegalArgumentException("Tên nhà cung cấp không được để trống và tối đa 200 ký tự.");
@@ -74,13 +69,11 @@ public class ImportDocumentController8 extends HttpServlet {
         return supplierDAO8.searchByName(name.trim());
     }
 
-    /** Tương ứng ImportDocumentController8.addSupplier(data). */
     public Supplier8 addSupplier(Supplier8 supplier) throws SQLException {
         validateSupplier(supplier);
         return supplierDAO8.insert(supplier);
     }
 
-    /** Tương ứng ImportDocumentController8.findDocumentByCode(code). */
     public Optional<Document8> findDocumentByCode(String code) throws SQLException {
         if (code == null || !code.trim().matches("[A-Za-z0-9][A-Za-z0-9_-]{0,29}")) {
             throw new IllegalArgumentException("Mã tài liệu không hợp lệ.");
@@ -88,7 +81,6 @@ public class ImportDocumentController8 extends HttpServlet {
         return documentDAO8.findByCode(code.trim());
     }
 
-    /** Tương ứng ImportDocumentController8.addDocument(data). */
     public Document8 addDocument(Document8 document) throws SQLException {
         validateDocument(document);
         if (documentDAO8.findByCode(document.getDocumentId()).isPresent()) {
@@ -97,7 +89,6 @@ public class ImportDocumentController8 extends HttpServlet {
         return documentDAO8.insert(document);
     }
 
-    /** Tương ứng ImportDocumentController8.addItem(code, quantity, price). */
     public ImportDetail8 addItem(HttpSession session, String code, int quantity, BigDecimal price)
             throws SQLException {
         Optional<Document8> document = findDocumentByCode(code);
@@ -115,7 +106,6 @@ public class ImportDocumentController8 extends HttpServlet {
         return detail;
     }
 
-    /** Tương ứng ImportDocumentController8.saveImport(supplierId, librarianId, items). */
     public ImportReceipt8 saveImport(long supplierId, long librarianId, List<ImportDetail8> items)
             throws SQLException {
         return saveImport(supplierId, librarianId, items, SubmissionTokenUtil8.create());
@@ -159,7 +149,6 @@ public class ImportDocumentController8 extends HttpServlet {
         return importReceiptDAO8.saveReceiptWithDetailsAndInvoice(receipt);
     }
 
-    /** Tương ứng ImportDocumentController8.recordPayment(invoiceId, method, amount). */
     public Payment8 recordPayment(long invoiceId, String method, BigDecimal amount, String status)
             throws SQLException {
         if (invoiceId <= 0) {
@@ -555,7 +544,6 @@ public class ImportDocumentController8 extends HttpServlet {
                 return value;
             }
         } catch (Exception ignored) {
-            // Chuyển sang thông báo thống nhất bên dưới.
         }
         throw new IllegalArgumentException(label + " không hợp lệ.");
     }
@@ -567,7 +555,6 @@ public class ImportDocumentController8 extends HttpServlet {
                 return quantity;
             }
         } catch (Exception ignored) {
-            // Chuyển sang thông báo thống nhất bên dưới.
         }
         throw new IllegalArgumentException("Số lượng phải là số nguyên dương.");
     }
@@ -579,7 +566,6 @@ public class ImportDocumentController8 extends HttpServlet {
                 return price;
             }
         } catch (Exception ignored) {
-            // Chuyển sang thông báo thống nhất bên dưới.
         }
         throw new IllegalArgumentException("Số tiền phải từ 0 đến 9.999.999.999,99 và tối đa 2 chữ số thập phân.");
     }
@@ -591,7 +577,6 @@ public class ImportDocumentController8 extends HttpServlet {
                 return year;
             }
         } catch (Exception ignored) {
-            // Chuyển sang thông báo thống nhất bên dưới.
         }
         throw new IllegalArgumentException("Năm xuất bản phải nằm trong khoảng 1000-9999.");
     }
@@ -603,7 +588,6 @@ public class ImportDocumentController8 extends HttpServlet {
                 return index;
             }
         } catch (Exception ignored) {
-            // Chuyển sang thông báo thống nhất bên dưới.
         }
         throw new IllegalArgumentException("Dòng chi tiết không hợp lệ.");
     }

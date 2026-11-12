@@ -1,4 +1,3 @@
--- LIBMAN - Dữ liệu kiểm thử có thể chạy lại trên schema đã tạo.
 USE libman;
 SET NAMES utf8mb4;
 

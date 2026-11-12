@@ -40,7 +40,6 @@ public class DocumentDAO8 extends DAO8 {
         return findById(documentId);
     }
 
-    /** Nạp nhiều tài liệu trong một truy vấn để tránh N+1 khi hiển thị phiếu nhập. */
     public List<Document8> findByIds(Collection<String> documentIds) throws SQLException {
         if (documentIds == null || documentIds.isEmpty()) {
             return List.of();
